@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail</title>
+</head>
+<body>
+    <p>Hello,This is the mail sent from assingment given : </p>
+    <p>This a mail from varshith says that you have selected following users : </p>
+    <% data.forEach((user,i) => { %>
+        <h1>User-<%= i+1 %> </h1>
+         <h2>Name: <%= user.name %></h2>
+            <h2>Mobile Number: <%= user.mobileNumber %></h2>
+            <h2>Email: <%=user.email%></h2>
+            <h3>Hobies:</h3>
+            <% user.hobies.forEach((hobie) => { %>
+             <span style="font-size: large;"> <%=hobie%> </span>
+            <% }) %>    
+    <% }) %>
+</body>
+</html>
