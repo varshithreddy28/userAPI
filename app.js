@@ -51,7 +51,7 @@ app.post('/sendmail', catchError(async (req, res) => {
         service: 'gmail',
         auth: {
             user: 'varshithreddytest@gmail.com',
-            pass: 'varshithtest'
+            pass: 'xxxxx'
         }
     });
 
