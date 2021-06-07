@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
     "nodemon": "nodemon app.js"
   },
   "author": "Varshith",
@@ -18,5 +19,8 @@
     "mongoose": "^5.12.13",
     "nodemailer": "^6.6.1",
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "14.16.0"
   }
 }
