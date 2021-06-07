@@ -10,6 +10,7 @@ const appError = require('../utilities/expressError')
 const User = require('../model/user')
 
 const userValidate = (req, res, next) => {
+    console.log(req.body)
     // special schema for Joi must be before mongoose code
     if (typeof (req.body.hobies) != 'object') {
         let hobies = req.body.hobies.split(',')

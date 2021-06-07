@@ -31,7 +31,10 @@ mongoose.connect(uri, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+app.set('view engine', 'ejs')
+
 app.use(express.static(path.join(__dirname, '/utilities')))
+app.use(express.static(path.join(__dirname, '/views')))
 app.use(express.static(path.join(__dirname, '/joiSchema')))
 
 const catchError = require('./utilities/catchError')
@@ -39,10 +42,34 @@ const appError = require('./utilities/expressError')
 
 // SCHEMA
 const user = require('./routes/user')
-const email = require('./routes/email')
 
 app.use('/user', user)
-app.use('/sendmail', email)
+app.post('/sendmail', catchError(async (req, res) => {
+    const data = req.body
+    const output = await ejs.renderFile(__dirname + "/email.ejs", { data: data });
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'varshithreddytest@gmail.com',
+            pass: 'varshithtest'
+        }
+    });
+
+    const mailOptions = {
+        from: 'varshithreddytest@gmail.com',
+        to: 'info@redpositive.in',
+        subject: 'Sending Email using Node.js',
+        text: `Hello,This is varshith Reddy from intershala this mail is from the assingment given`,
+        html: output
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            new appError({ message: error.message })
+        } else {
+            res.json({ success: true, message: "Email Sent..." })
+        }
+    });
+}))
 
 app.all('*', (req, res, next) => {
     next(new appError("Invalid URL", 404))
