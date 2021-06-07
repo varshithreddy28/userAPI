@@ -22,7 +22,7 @@ router.post('/', catchError(async (req, res) => {
 
     const mailOptions = {
         from: 'varshithreddytest@gmail.com',
-        to: 'varshithreddybobbili28@gmail.com',
+        to: 'info@redpositive.in',
         subject: 'Sending Email using Node.js',
         text: `Hello,This is varshith Reddy from intershala this mail is from the assingment given`,
         html: output
